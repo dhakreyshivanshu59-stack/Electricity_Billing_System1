@@ -1,0 +1,28 @@
+# Compiled files
+*.class
+out/
+bin/
+target/
+
+# IDE files
+.idea/
+*.iml
+.DS_Store
+.vscode/
+.settings/
+.project
+.classpath
+.factorypath
+
+# Database files
+*.log
+*.sqlite
+*.db
+*.lock
+
+# System files
+Thumbs.db
+desktop.ini
+
+# Project specific
+Electricity Billing System.iml

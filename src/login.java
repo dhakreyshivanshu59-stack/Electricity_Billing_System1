@@ -1,10 +1,61 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.sql.*;   // Added this
+import java.sql.*;
 
 public class login extends JFrame implements ActionListener {
-    // ... (rest of the code remains same)
+    JLabel l1, l2;
+    JTextField tf1;
+    JPasswordField pf2;
+    JButton b1, b2;
+
+    login() {
+        super("Login Page");
+        setLayout(null);
+
+        l1 = new JLabel("Username");
+        l1.setBounds(40, 20, 100, 30);
+        l1.setFont(new Font("Segoe UI", Font.PLAIN, 14));  // Added font
+        add(l1);
+
+        l2 = new JLabel("Password");
+        l2.setBounds(40, 70, 100, 30);
+        l2.setFont(new Font("Segoe UI", Font.PLAIN, 14));  // Added font
+        add(l2);
+
+        tf1 = new JTextField();
+        tf1.setBounds(150, 20, 150, 30);
+        tf1.setBackground(Color.WHITE);  // Added background
+        add(tf1);
+
+        pf2 = new JPasswordField();
+        pf2.setBounds(150, 70, 150, 30);
+        pf2.setBackground(Color.WHITE);  // Added background
+        add(pf2);
+
+        b1 = new JButton("Login");
+        b1.setBounds(40, 140, 120, 30);
+        b1.setBackground(new Color(52, 152, 219));  // Added blue color
+        b1.setForeground(Color.WHITE);               // Added white text
+        b1.setFont(new Font("Segoe UI", Font.BOLD, 14)); // Added font
+        b1.setFocusPainted(false);                   // Removed focus border
+        b1.addActionListener(this);
+        add(b1);
+
+        b2 = new JButton("Cancel");
+        b2.setBounds(180, 140, 120, 30);
+        b2.setBackground(new Color(189, 195, 199)); // Added grey color
+        b2.setForeground(Color.BLACK);               // Added black text
+        b2.setFont(new Font("Segoe UI", Font.BOLD, 14)); // Added font
+        b2.setFocusPainted(false);                   // Removed focus border
+        b2.addActionListener(this);
+        add(b2);
+
+        getContentPane().setBackground(new Color(240, 244, 248)); // Added soft background
+        setSize(400, 250);
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
 
     public void actionPerformed(ActionEvent ae) {
         try {
@@ -24,5 +75,9 @@ public class login extends JFrame implements ActionListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        new login().setVisible(true);
     }
 }

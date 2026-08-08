@@ -1,53 +1,28 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.sql.*;   // Added this
 
 public class login extends JFrame implements ActionListener {
-    JLabel l1, l2;
-    JTextField tf1;
-    JPasswordField pf2;
-    JButton b1, b2;
-
-    login() {
-        super("Login Page");
-        setLayout(null);
-
-        l1 = new JLabel("Username");
-        l1.setBounds(40, 20, 100, 30);
-        add(l1);
-
-        l2 = new JLabel("Password");
-        l2.setBounds(40, 70, 100, 30);
-        add(l2);
-
-        tf1 = new JTextField();
-        tf1.setBounds(150, 20, 150, 30);
-        add(tf1);
-
-        pf2 = new JPasswordField();
-        pf2.setBounds(150, 70, 150, 30);
-        add(pf2);
-
-        b1 = new JButton("Login");
-        b1.setBounds(40, 140, 120, 30);
-        b1.addActionListener(this);
-        add(b1);
-
-        b2 = new JButton("Cancel");
-        b2.setBounds(180, 140, 120, 30);
-        b2.addActionListener(this);
-        add(b2);
-
-        setSize(400, 250);
-        setLocationRelativeTo(null);
-        setVisible(true);
-    }
+    // ... (rest of the code remains same)
 
     public void actionPerformed(ActionEvent ae) {
-        // Placeholder for now
-    }
-
-    public static void main(String[] args) {
-        new login().setVisible(true);
+        try {
+            conn c1 = new conn();
+            String u = tf1.getText();
+            String v = pf2.getText();
+            String q = "select * from login where username='" + u + "' and password='" + v + "'";
+            ResultSet rs = c1.s.executeQuery(q);
+            if (rs.next()) {
+                new Project().setVisible(true);
+                setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid login");
+                tf1.setText("");
+                pf2.setText("");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -57,8 +57,52 @@ public class Project extends JFrame implements ActionListener {
         user.add(u2);
         user.add(u3);
 
+        // Report menu
+        JMenu report = new JMenu("Report");
+        report.setForeground(Color.WHITE);
+        report.setFont(new Font("Segoe UI", Font.BOLD, 14));
+
+        JMenuItem r1 = new JMenuItem("Generate Bill");
+        r1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        r1.addActionListener(this);
+        report.add(r1);
+
+        // Utility menu
+        JMenu utility = new JMenu("Utility");
+        utility.setForeground(Color.WHITE);
+        utility.setFont(new Font("Segoe UI", Font.BOLD, 14));
+
+        JMenuItem ut1 = new JMenuItem("Notepad");
+        ut1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        ut1.addActionListener(this);
+
+        JMenuItem ut2 = new JMenuItem("Calculator");
+        ut2.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        ut2.addActionListener(this);
+
+        JMenuItem ut3 = new JMenuItem("Web Browser");
+        ut3.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        ut3.addActionListener(this);
+
+        utility.add(ut1);
+        utility.add(ut2);
+        utility.add(ut3);
+
+        // Exit menu
+        JMenu exit = new JMenu("Exit");
+        exit.setForeground(Color.WHITE);
+        exit.setFont(new Font("Segoe UI", Font.BOLD, 14));
+
+        JMenuItem ex = new JMenuItem("Exit");
+        ex.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        ex.addActionListener(this);
+        exit.add(ex);
+
         mb.add(master);
         mb.add(user);
+        mb.add(report);
+        mb.add(utility);
+        mb.add(exit);
         setJMenuBar(mb);
 
         setLayout(new FlowLayout());

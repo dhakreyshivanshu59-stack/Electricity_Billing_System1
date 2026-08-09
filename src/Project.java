@@ -110,7 +110,28 @@ public class Project extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent ae) {
-        // Will implement later
+        String msg = ae.getActionCommand();
+        if (msg.equals("Customer Details")) {
+            new customer_details().setVisible(true);
+        } else if (msg.equals("New Customer")) {
+            new new_customer().setVisible(true);
+        } else if (msg.equals("Calculate Bill")) {
+            new calculate_bill().setVisible(true);
+        } else if (msg.equals("Pay Bill")) {
+            new pay_bill().setVisible(true);
+        } else if (msg.equals("Notepad")) {
+            try { Runtime.getRuntime().exec("notepad.exe"); } catch (Exception e) {}
+        } else if (msg.equals("Calculator")) {
+            try { Runtime.getRuntime().exec("calc.exe"); } catch (Exception e) {}
+        } else if (msg.equals("Web Browser")) {
+            try { Runtime.getRuntime().exec("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"); } catch (Exception e) {}
+        } else if (msg.equals("Exit")) {
+            System.exit(0);
+        } else if (msg.equals("Generate Bill")) {
+            new generate_bill().setVisible(true);
+        } else if (msg.equals("Last Bill")) {
+            new LastBill().setVisible(true);
+        }
     }
 
     public static void main(String[] args) {

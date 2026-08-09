@@ -19,6 +19,7 @@ public class Project extends JFrame implements ActionListener {
         // Menu bar
         JMenuBar mb = new JMenuBar();
         mb.setBackground(new Color(52, 73, 94));
+        mb.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
 
         // Master menu
         JMenu master = new JMenu("Master");
@@ -27,10 +28,18 @@ public class Project extends JFrame implements ActionListener {
 
         JMenuItem m1 = new JMenuItem("New Customer");
         m1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        m1.setForeground(new Color(44, 62, 80));
+        ImageIcon icon1 = new ImageIcon(ClassLoader.getSystemResource("images/icon1.jpg"));
+        Image image1 = icon1.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        m1.setIcon(new ImageIcon(image1));
         m1.addActionListener(this);
 
         JMenuItem m2 = new JMenuItem("Customer Details");
         m2.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        m2.setForeground(new Color(44, 62, 80));
+        ImageIcon icon2 = new ImageIcon(ClassLoader.getSystemResource("images/icon2.png"));
+        Image image2 = icon2.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        m2.setIcon(new ImageIcon(image2));
         m2.addActionListener(this);
 
         master.add(m1);
@@ -43,14 +52,26 @@ public class Project extends JFrame implements ActionListener {
 
         JMenuItem u1 = new JMenuItem("Pay Bill");
         u1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        u1.setForeground(new Color(44, 62, 80));
+        ImageIcon icon4 = new ImageIcon(ClassLoader.getSystemResource("images/icon4.png"));
+        Image image4 = icon4.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        u1.setIcon(new ImageIcon(image4));
         u1.addActionListener(this);
 
         JMenuItem u2 = new JMenuItem("Calculate Bill");
         u2.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        u2.setForeground(new Color(44, 62, 80));
+        ImageIcon icon5 = new ImageIcon(ClassLoader.getSystemResource("images/icon5.png"));
+        Image image5 = icon5.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        u2.setIcon(new ImageIcon(image5));
         u2.addActionListener(this);
 
         JMenuItem u3 = new JMenuItem("Last Bill");
         u3.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        u3.setForeground(new Color(44, 62, 80));
+        ImageIcon icon6 = new ImageIcon(ClassLoader.getSystemResource("images/icon6.png"));
+        Image image6 = icon6.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        u3.setIcon(new ImageIcon(image6));
         u3.addActionListener(this);
 
         user.add(u1);
@@ -64,6 +85,10 @@ public class Project extends JFrame implements ActionListener {
 
         JMenuItem r1 = new JMenuItem("Generate Bill");
         r1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        r1.setForeground(new Color(44, 62, 80));
+        ImageIcon icon7 = new ImageIcon(ClassLoader.getSystemResource("images/icon7.png"));
+        Image image7 = icon7.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        r1.setIcon(new ImageIcon(image7));
         r1.addActionListener(this);
         report.add(r1);
 
@@ -74,14 +99,26 @@ public class Project extends JFrame implements ActionListener {
 
         JMenuItem ut1 = new JMenuItem("Notepad");
         ut1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        ut1.setForeground(new Color(44, 62, 80));
+        ImageIcon icon8 = new ImageIcon(ClassLoader.getSystemResource("images/icon12.png"));
+        Image image8 = icon8.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        ut1.setIcon(new ImageIcon(image8));
         ut1.addActionListener(this);
 
         JMenuItem ut2 = new JMenuItem("Calculator");
         ut2.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        ut2.setForeground(new Color(44, 62, 80));
+        ImageIcon icon9 = new ImageIcon(ClassLoader.getSystemResource("images/icon9.png"));
+        Image image9 = icon9.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        ut2.setIcon(new ImageIcon(image9));
         ut2.addActionListener(this);
 
         JMenuItem ut3 = new JMenuItem("Web Browser");
         ut3.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        ut3.setForeground(new Color(44, 62, 80));
+        ImageIcon icon10 = new ImageIcon(ClassLoader.getSystemResource("images/icon10.png"));
+        Image image10 = icon10.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        ut3.setIcon(new ImageIcon(image10));
         ut3.addActionListener(this);
 
         utility.add(ut1);
@@ -95,6 +132,10 @@ public class Project extends JFrame implements ActionListener {
 
         JMenuItem ex = new JMenuItem("Exit");
         ex.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        ex.setForeground(new Color(44, 62, 80));
+        ImageIcon icon11 = new ImageIcon(ClassLoader.getSystemResource("images/icon11.png"));
+        Image image11 = icon11.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        ex.setIcon(new ImageIcon(image11));
         ex.addActionListener(this);
         exit.add(ex);
 
@@ -105,6 +146,7 @@ public class Project extends JFrame implements ActionListener {
         mb.add(exit);
         setJMenuBar(mb);
 
+        setFont(new Font("Segoe UI", Font.BOLD, 16));
         setLayout(new FlowLayout());
         setVisible(false);
     }

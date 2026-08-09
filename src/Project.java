@@ -36,7 +36,29 @@ public class Project extends JFrame implements ActionListener {
         master.add(m1);
         master.add(m2);
 
+        // User menu
+        JMenu user = new JMenu("User");
+        user.setForeground(Color.WHITE);
+        user.setFont(new Font("Segoe UI", Font.BOLD, 14));
+
+        JMenuItem u1 = new JMenuItem("Pay Bill");
+        u1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        u1.addActionListener(this);
+
+        JMenuItem u2 = new JMenuItem("Calculate Bill");
+        u2.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        u2.addActionListener(this);
+
+        JMenuItem u3 = new JMenuItem("Last Bill");
+        u3.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        u3.addActionListener(this);
+
+        user.add(u1);
+        user.add(u2);
+        user.add(u3);
+
         mb.add(master);
+        mb.add(user);
         setJMenuBar(mb);
 
         setLayout(new FlowLayout());

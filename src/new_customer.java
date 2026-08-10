@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 import javax.swing.*;
 
 public class new_customer extends JFrame implements ActionListener {
@@ -125,6 +126,16 @@ public class new_customer extends JFrame implements ActionListener {
 
             try {
                 conn c = new conn();
+
+                // Check if meter number already exists
+                String checkQuery = "select * from emp where meter_number='" + meter + "'";
+                ResultSet rs = c.s.executeQuery(checkQuery);
+                if (rs.next()) {
+                    JOptionPane.showMessageDialog(null, "Meter number already exists. Please use a unique meter number.");
+                    return;
+                }
+
+                // Insert new customer
                 String q = "insert into emp values('" + name + "','" + meter + "','" + address + "','" + state + "','" + city + "','" + email + "','" + phone + "')";
                 c.s.executeUpdate(q);
                 JOptionPane.showMessageDialog(null, "Customer Added Successfully");

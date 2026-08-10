@@ -81,7 +81,26 @@ public class new_customer extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent ae) {
-        // Placeholder for now
+        if (ae.getSource() == b1) {
+            String name = t1.getText();
+            String meter = t2.getText();
+            String address = t3.getText();
+            String state = t4.getText();
+            String city = t5.getText();
+            String email = t6.getText();
+            String phone = t7.getText();
+            try {
+                conn c = new conn();
+                String q = "insert into emp values('" + name + "','" + meter + "','" + address + "','" + state + "','" + city + "','" + email + "','" + phone + "')";
+                c.s.executeUpdate(q);
+                JOptionPane.showMessageDialog(null, "Customer Added Successfully");
+                setVisible(false);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            setVisible(false);
+        }
     }
 
     public static void main(String[] args) {

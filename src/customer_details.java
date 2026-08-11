@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.sql.*;   // Added this
 
 public class customer_details extends JFrame implements ActionListener {
     JLabel l1, l2, l3, l4, l5, l6, l7;
@@ -83,7 +84,33 @@ public class customer_details extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent ae) {
-        // Placeholder for now
+        try {
+            conn c = new conn();
+            String meter = JOptionPane.showInputDialog("Enter Meter Number");
+            
+            if (meter == null || meter.trim().isEmpty()) {
+                return; // User cancelled or entered empty
+            }
+            
+            ResultSet rs = c.s.executeQuery("select * from emp where meter_number='" + meter + "'");
+            if (rs.next()) {
+                t1.setText(rs.getString("name"));
+                t2.setText(rs.getString("meter_number"));
+                t3.setText(rs.getString("address"));
+                t4.setText(rs.getString("state"));
+                t5.setText(rs.getString("city"));
+                t6.setText(rs.getString("email"));
+                t7.setText(rs.getString("phone"));
+            } else {
+                JOptionPane.showMessageDialog(null, "Customer not found");
+                // Clear fields
+                t1.setText(""); t2.setText(""); t3.setText("");
+                t4.setText(""); t5.setText(""); t6.setText("");
+                t7.setText("");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

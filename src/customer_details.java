@@ -12,7 +12,7 @@ public class customer_details extends JFrame implements ActionListener {
         setLayout(null);
         setSize(700, 500);
         setLocationRelativeTo(null);
-        getContentPane().setBackground(new Color(240, 244, 248)); // Added
+        getContentPane().setBackground(new Color(240, 244, 248));
 
         l1 = new JLabel("CUSTOMER DETAILS");
         l1.setFont(new Font("Segoe UI", Font.BOLD, 24));
@@ -21,7 +21,7 @@ public class customer_details extends JFrame implements ActionListener {
         add(l1);
 
         l2 = new JLabel("Name");
-        l2.setFont(new Font("Segoe UI", Font.PLAIN, 14)); // Added
+        l2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         l2.setBounds(50, 80, 100, 30);
         add(l2);
         t1 = new JTextField();
@@ -30,7 +30,7 @@ public class customer_details extends JFrame implements ActionListener {
         add(t1);
 
         l3 = new JLabel("Meter Number");
-        l3.setFont(new Font("Segoe UI", Font.PLAIN, 14)); // Added
+        l3.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         l3.setBounds(50, 130, 100, 30);
         add(l3);
         t2 = new JTextField();
@@ -39,7 +39,7 @@ public class customer_details extends JFrame implements ActionListener {
         add(t2);
 
         l4 = new JLabel("Address");
-        l4.setFont(new Font("Segoe UI", Font.PLAIN, 14)); // Added
+        l4.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         l4.setBounds(50, 180, 100, 30);
         add(l4);
         t3 = new JTextField();
@@ -48,7 +48,7 @@ public class customer_details extends JFrame implements ActionListener {
         add(t3);
 
         l5 = new JLabel("State");
-        l5.setFont(new Font("Segoe UI", Font.PLAIN, 14)); // Added
+        l5.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         l5.setBounds(50, 230, 100, 30);
         add(l5);
         t4 = new JTextField();
@@ -57,7 +57,7 @@ public class customer_details extends JFrame implements ActionListener {
         add(t4);
 
         l6 = new JLabel("City");
-        l6.setFont(new Font("Segoe UI", Font.PLAIN, 14)); // Added
+        l6.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         l6.setBounds(50, 280, 100, 30);
         add(l6);
         t5 = new JTextField();
@@ -66,7 +66,7 @@ public class customer_details extends JFrame implements ActionListener {
         add(t5);
 
         l7 = new JLabel("Email");
-        l7.setFont(new Font("Segoe UI", Font.PLAIN, 14)); // Added
+        l7.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         l7.setBounds(50, 330, 100, 30);
         add(l7);
         t6 = new JTextField();
@@ -75,7 +75,7 @@ public class customer_details extends JFrame implements ActionListener {
         add(t6);
 
         JLabel l8 = new JLabel("Phone");
-        l8.setFont(new Font("Segoe UI", Font.PLAIN, 14)); // Added
+        l8.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         l8.setBounds(50, 380, 100, 30);
         add(l8);
         t7 = new JTextField();
@@ -84,9 +84,9 @@ public class customer_details extends JFrame implements ActionListener {
         add(t7);
 
         b1 = new JButton("Show Details");
-        b1.setBackground(new Color(52, 152, 219)); // Added blue
-        b1.setForeground(Color.WHITE);             // Added white text
-        b1.setFont(new Font("Segoe UI", Font.BOLD, 14)); // Added
+        b1.setBackground(new Color(52, 152, 219));
+        b1.setForeground(Color.WHITE);
+        b1.setFont(new Font("Segoe UI", Font.BOLD, 14));
         b1.setBounds(250, 430, 150, 30);
         b1.addActionListener(this);
         add(b1);
@@ -96,13 +96,26 @@ public class customer_details extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent ae) {
         try {
-            conn c = new conn();
             String meter = JOptionPane.showInputDialog("Enter Meter Number");
             
-            if (meter == null || meter.trim().isEmpty()) {
+            // Check if user cancelled or entered empty
+            if (meter == null) {
+                return; // User clicked Cancel
+            }
+            
+            meter = meter.trim();
+            if (meter.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Meter number cannot be empty.");
                 return;
             }
             
+            // Check if meter number contains only digits
+            if (!meter.matches("\\d+")) {
+                JOptionPane.showMessageDialog(null, "Meter number must contain only digits.");
+                return;
+            }
+            
+            conn c = new conn();
             ResultSet rs = c.s.executeQuery("select * from emp where meter_number='" + meter + "'");
             if (rs.next()) {
                 t1.setText(rs.getString("name"));
@@ -113,12 +126,13 @@ public class customer_details extends JFrame implements ActionListener {
                 t6.setText(rs.getString("email"));
                 t7.setText(rs.getString("phone"));
             } else {
-                JOptionPane.showMessageDialog(null, "Customer not found");
+                JOptionPane.showMessageDialog(null, "Customer not found with meter number: " + meter);
                 t1.setText(""); t2.setText(""); t3.setText("");
                 t4.setText(""); t5.setText(""); t6.setText("");
                 t7.setText("");
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error fetching customer details: " + e.getMessage());
             e.printStackTrace();
         }
     }

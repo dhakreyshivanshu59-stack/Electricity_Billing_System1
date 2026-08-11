@@ -6,7 +6,7 @@ import javax.swing.*;
 public class customer_details extends JFrame implements ActionListener {
     JLabel l1, l2, l3, l4, l5, l6, l7;
     JTextField t1, t2, t3, t4, t5, t6, t7;
-    JButton b1;
+    JButton b1, b2; // Added clear button
 
     customer_details() {
         setLayout(null);
@@ -27,6 +27,7 @@ public class customer_details extends JFrame implements ActionListener {
         t1 = new JTextField();
         t1.setBounds(180, 80, 200, 30);
         t1.setEditable(false);
+        t1.setBackground(new Color(255, 255, 240)); // Added light background
         add(t1);
 
         l3 = new JLabel("Meter Number");
@@ -36,6 +37,7 @@ public class customer_details extends JFrame implements ActionListener {
         t2 = new JTextField();
         t2.setBounds(180, 130, 200, 30);
         t2.setEditable(false);
+        t2.setBackground(new Color(255, 255, 240));
         add(t2);
 
         l4 = new JLabel("Address");
@@ -45,6 +47,7 @@ public class customer_details extends JFrame implements ActionListener {
         t3 = new JTextField();
         t3.setBounds(180, 180, 200, 30);
         t3.setEditable(false);
+        t3.setBackground(new Color(255, 255, 240));
         add(t3);
 
         l5 = new JLabel("State");
@@ -54,6 +57,7 @@ public class customer_details extends JFrame implements ActionListener {
         t4 = new JTextField();
         t4.setBounds(180, 230, 200, 30);
         t4.setEditable(false);
+        t4.setBackground(new Color(255, 255, 240));
         add(t4);
 
         l6 = new JLabel("City");
@@ -63,6 +67,7 @@ public class customer_details extends JFrame implements ActionListener {
         t5 = new JTextField();
         t5.setBounds(180, 280, 200, 30);
         t5.setEditable(false);
+        t5.setBackground(new Color(255, 255, 240));
         add(t5);
 
         l7 = new JLabel("Email");
@@ -72,6 +77,7 @@ public class customer_details extends JFrame implements ActionListener {
         t6 = new JTextField();
         t6.setBounds(180, 330, 200, 30);
         t6.setEditable(false);
+        t6.setBackground(new Color(255, 255, 240));
         add(t6);
 
         JLabel l8 = new JLabel("Phone");
@@ -81,26 +87,42 @@ public class customer_details extends JFrame implements ActionListener {
         t7 = new JTextField();
         t7.setBounds(180, 380, 200, 30);
         t7.setEditable(false);
+        t7.setBackground(new Color(255, 255, 240));
         add(t7);
 
         b1 = new JButton("Show Details");
         b1.setBackground(new Color(52, 152, 219));
         b1.setForeground(Color.WHITE);
         b1.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        b1.setBounds(250, 430, 150, 30);
+        b1.setBounds(100, 430, 150, 30);
         b1.addActionListener(this);
         add(b1);
+
+        b2 = new JButton("Clear"); // Added clear button
+        b2.setBackground(new Color(189, 195, 199));
+        b2.setForeground(Color.BLACK);
+        b2.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        b2.setBounds(350, 430, 150, 30);
+        b2.addActionListener(this);
+        add(b2);
 
         setVisible(false);
     }
 
     public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == b2) {
+            // Clear all fields
+            t1.setText(""); t2.setText(""); t3.setText("");
+            t4.setText(""); t5.setText(""); t6.setText("");
+            t7.setText("");
+            return;
+        }
+
         try {
             String meter = JOptionPane.showInputDialog("Enter Meter Number");
             
-            // Check if user cancelled or entered empty
             if (meter == null) {
-                return; // User clicked Cancel
+                return;
             }
             
             meter = meter.trim();
@@ -109,7 +131,6 @@ public class customer_details extends JFrame implements ActionListener {
                 return;
             }
             
-            // Check if meter number contains only digits
             if (!meter.matches("\\d+")) {
                 JOptionPane.showMessageDialog(null, "Meter number must contain only digits.");
                 return;
